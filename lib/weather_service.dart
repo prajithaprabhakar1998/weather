@@ -1,10 +1,13 @@
 import 'dart:convert';
+import 'dart:html';
 
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 import 'package:weather/weather.dart';
 class WeatherService {
+
   Future<Weather> getWeatherData(String place) async {
+
     try {
       // b38d482ee58f4b4f8d633932230207
       // final uri=Uri.http("api.weatherapi.com","/v1");
@@ -12,6 +15,7 @@ class WeatherService {
         "key": "b38d482ee58f4b4f8d633932230207",
         "q": place,
       };
+
       final uri = Uri.http(
           "api.weatherapi.com", "/v1/current.json", queryParameters);
       final response = await http.get(uri);
@@ -21,8 +25,9 @@ class WeatherService {
       else {
         throw Exception("can not get weather");
       }
-    }
+     }
     catch (e) {
+
       rethrow;
     }
   }

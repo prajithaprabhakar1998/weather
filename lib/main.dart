@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:weather/weather.dart';
 import 'package:weather/weather_service.dart';
 
-
-void main(){
+void main() {
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
     home: Main(),
@@ -18,41 +17,42 @@ class Main extends StatefulWidget {
 }
 
 class _MainState extends State<Main> {
-  WeatherService weatherService=WeatherService();
-  Weather weather=Weather();
- //String data="";
-  String currentWeather="";
-  double tempC=0;
-  double tempF=0;
-  int hum=0;
-  double wind=0;
+  WeatherService weatherService = WeatherService();
+  Weather weather = Weather();
+
+  String currentWeather = "sunny";
+  String weather11 = "sunny";
+  double tempC = 0;
+  double tempF = 0;
+  int hum = 0;
+  double wind = 0;
+
 
   @override
   void initState() {
     super.initState();
-    //getWeather();
+   // getWeather();
   }
 
-  void getWeather(String input) async{
-    weather=await weatherService.getWeatherData(input);
+  void getWeather(String input) async {
 
+      weather = await weatherService.getWeatherData(input);
 
-    setState(() {
-      currentWeather=weather.condition;
-      tempC=weather.temperatureC;
-      tempF=weather.temperatureF;
-      hum=weather.humidity;
-      wind=weather.windspeed;
-     // weather =weather["current"].replaceAll(' ', '').toLowerCase();
-     // weather2=weather.replaceAll('')
-    });
-    print(weather);
+      setState(() {
+        currentWeather = weather.condition;
+        tempC = weather.temperatureC;
+        tempF = weather.temperatureF;
+        hum = weather.humidity;
+        wind = weather.windspeed;
 
+      });
+
+    weather11 = currentWeather.replaceAll('', "").toLowerCase();
   }
 
   @override
   Widget build(BuildContext context) {
-    return  MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Container(
           decoration: BoxDecoration(
@@ -75,16 +75,29 @@ class _MainState extends State<Main> {
                           children: [
                             Padding(
                               padding: const EdgeInsets.all(30.0),
-                              child: Text("Temperature in °C :",style: TextStyle(color: Colors.white,fontSize: 30),),
+                              child: Text(
+                                "Temperature in °C :",
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 30),
+                              ),
                             ),
-                            SizedBox(width: 20,),
+                            SizedBox(
+                              width: 20,
+                            ),
                             Text(
                               tempC.toString() + ' °C',
                               style: TextStyle(
                                   color: Colors.white, fontSize: 40.0),
                             ),
-                            
-                           // Image(image: AssetImage("assets/images/weather.png"))
+                            SizedBox(
+                              width: 40,
+                            ),
+
+                            Image(
+                              image: AssetImage("assets/images/$weather11.png"),
+                              height: 150,
+                              width: 150,
+                            ),
 
                           ],
                         ),
@@ -94,9 +107,13 @@ class _MainState extends State<Main> {
                           children: [
                             Padding(
                               padding: const EdgeInsets.all(30.0),
-                              child: Text("Temperature in °F :",style: TextStyle(color: Colors.white,fontSize: 30)),
+                              child: Text("Temperature in °F :",
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 30)),
                             ),
-                            SizedBox(width: 20,),
+                            SizedBox(
+                              width: 20,
+                            ),
                             Text(
                               tempF.toString() + ' °F',
                               style: TextStyle(
@@ -110,9 +127,13 @@ class _MainState extends State<Main> {
                           children: [
                             Padding(
                               padding: const EdgeInsets.all(30.0),
-                              child: Text("Humidity :",style: TextStyle(color: Colors.white,fontSize: 30)),
+                              child: Text("Humidity :",
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 30)),
                             ),
-                            SizedBox(width: 20,),
+                            SizedBox(
+                              width: 20,
+                            ),
                             Text(
                               hum.toString() + ' °C',
                               style: TextStyle(
@@ -126,9 +147,13 @@ class _MainState extends State<Main> {
                           children: [
                             Padding(
                               padding: const EdgeInsets.all(30.0),
-                              child: Text("Wind Speed :",style: TextStyle(color: Colors.white,fontSize: 30)),
+                              child: Text("Wind Speed :",
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 30)),
                             ),
-                            SizedBox(width: 20,),
+                            SizedBox(
+                              width: 20,
+                            ),
                             Text(
                               wind.toString() + 'km/hr',
                               style: TextStyle(
@@ -140,8 +165,7 @@ class _MainState extends State<Main> {
                       Center(
                         child: Text(
                           currentWeather,
-                          style: TextStyle(
-                              color: Colors.white, fontSize: 40.0),
+                          style: TextStyle(color: Colors.white, fontSize: 40.0),
                         ),
                       ),
                     ],
@@ -153,16 +177,15 @@ class _MainState extends State<Main> {
                       width: 300,
                       child: TextField(
                         onSubmitted: (String input) {
-                          getWeather(input);
+
+                            getWeather(input);
                         },
-                        style:
-                        TextStyle(color: Colors.white, fontSize: 25),
+                        style: TextStyle(color: Colors.white, fontSize: 25),
                         decoration: InputDecoration(
                           hintText: 'Search another location...',
-                          hintStyle: TextStyle(
-                              color: Colors.white, fontSize: 18.0),
-                          prefixIcon:
-                          Icon(Icons.search, color: Colors.white),
+                          hintStyle:
+                              TextStyle(color: Colors.white, fontSize: 18.0),
+                          prefixIcon: Icon(Icons.search, color: Colors.white),
                         ),
                       ),
                     ),
