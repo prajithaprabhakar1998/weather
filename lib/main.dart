@@ -20,7 +20,7 @@ class _MainState extends State<Main> {
   WeatherService weatherService = WeatherService();
   Weather weather = Weather();
 
-  String currentWeather = "sunny";
+  String currentWeather = "";
   String weather11 = "sunny";
   double tempC = 0;
   double tempF = 0;
@@ -93,11 +93,11 @@ class _MainState extends State<Main> {
                               width: 40,
                             ),
 
-                            Image(
-                              image: AssetImage("assets/images/$weather11.png"),
-                              height: 150,
-                              width: 150,
-                            ),
+                            // Image(
+                            //   image: AssetImage("assets/images/$weather11.png"),
+                            //   height: 150,
+                            //   width: 150,
+                            // ),
 
                           ],
                         ),
