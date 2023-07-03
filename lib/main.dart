@@ -1,0 +1,176 @@
+import 'package:flutter/material.dart';
+import 'package:weather/weather.dart';
+import 'package:weather/weather_service.dart';
+
+
+void main(){
+  runApp(MaterialApp(
+    debugShowCheckedModeBanner: false,
+    home: Main(),
+  ));
+}
+
+class Main extends StatefulWidget {
+  const Main({Key? key}) : super(key: key);
+
+  @override
+  State<Main> createState() => _MainState();
+}
+
+class _MainState extends State<Main> {
+  WeatherService weatherService=WeatherService();
+  Weather weather=Weather();
+ //String data="";
+  String currentWeather="";
+  double tempC=0;
+  double tempF=0;
+  int hum=0;
+  double wind=0;
+
+  @override
+  void initState() {
+    super.initState();
+    //getWeather();
+  }
+
+  void getWeather(String input) async{
+    weather=await weatherService.getWeatherData(input);
+
+
+    setState(() {
+      currentWeather=weather.condition;
+      tempC=weather.temperatureC;
+      tempF=weather.temperatureF;
+      hum=weather.humidity;
+      wind=weather.windspeed;
+     // weather =weather["current"].replaceAll(' ', '').toLowerCase();
+     // weather2=weather.replaceAll('')
+    });
+    print(weather);
+
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return  MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Container(
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage("assets/images/background.png"),
+              fit: BoxFit.cover,
+            ),
+          ),
+          child: Scaffold(
+            backgroundColor: Colors.transparent,
+            body: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                Center(
+                  child: Column(
+                    children: <Widget>[
+                      Center(
+                        child: Row(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(30.0),
+                              child: Text("Temperature in °C :",style: TextStyle(color: Colors.white,fontSize: 30),),
+                            ),
+                            SizedBox(width: 20,),
+                            Text(
+                              tempC.toString() + ' °C',
+                              style: TextStyle(
+                                  color: Colors.white, fontSize: 40.0),
+                            ),
+                            
+                           // Image(image: AssetImage("assets/images/weather.png"))
+
+                          ],
+                        ),
+                      ),
+                      Center(
+                        child: Row(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(30.0),
+                              child: Text("Temperature in °F :",style: TextStyle(color: Colors.white,fontSize: 30)),
+                            ),
+                            SizedBox(width: 20,),
+                            Text(
+                              tempF.toString() + ' °F',
+                              style: TextStyle(
+                                  color: Colors.white, fontSize: 40.0),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Center(
+                        child: Row(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(30.0),
+                              child: Text("Humidity :",style: TextStyle(color: Colors.white,fontSize: 30)),
+                            ),
+                            SizedBox(width: 20,),
+                            Text(
+                              hum.toString() + ' °C',
+                              style: TextStyle(
+                                  color: Colors.white, fontSize: 40.0),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Center(
+                        child: Row(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(30.0),
+                              child: Text("Wind Speed :",style: TextStyle(color: Colors.white,fontSize: 30)),
+                            ),
+                            SizedBox(width: 20,),
+                            Text(
+                              wind.toString() + 'km/hr',
+                              style: TextStyle(
+                                  color: Colors.white, fontSize: 40.0),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Center(
+                        child: Text(
+                          currentWeather,
+                          style: TextStyle(
+                              color: Colors.white, fontSize: 40.0),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Column(
+                  children: <Widget>[
+                    Container(
+                      width: 300,
+                      child: TextField(
+                        onSubmitted: (String input) {
+                          getWeather(input);
+                        },
+                        style:
+                        TextStyle(color: Colors.white, fontSize: 25),
+                        decoration: InputDecoration(
+                          hintText: 'Search another location...',
+                          hintStyle: TextStyle(
+                              color: Colors.white, fontSize: 18.0),
+                          prefixIcon:
+                          Icon(Icons.search, color: Colors.white),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          )),
+    );
+  }
+}
