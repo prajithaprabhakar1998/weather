@@ -6,19 +6,25 @@ import 'package:intl/intl.dart';
 import 'package:weather/weather.dart';
 class WeatherService {
 
-  Future<Weather> getWeatherData(String place) async {
+  Future<Weather> getWeatherData(String input) async {
 
     try {
       // b38d482ee58f4b4f8d633932230207
       // final uri=Uri.http("api.weatherapi.com","/v1");
       final queryParameters = {
         "key": "b38d482ee58f4b4f8d633932230207",
-        "q": place,
+        "q": input,
       };
 
-      final uri = Uri.http(
-          "api.weatherapi.com", "/v1/current.json", queryParameters);
-      final response = await http.get(uri);
+      // final uri = Uri.http(
+      //     "api.weatherapi.com", "/v1/current.json", queryParameters);
+
+      final uri2 = Uri.http(
+          "api.weatherapi.com", "/v1/forecast.json", queryParameters);
+
+      final response = await http.get(uri2);
+
+
       if (response.statusCode == 200) {
         return Weather.fromJson(jsonDecode(response.body));
       }

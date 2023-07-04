@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:weather/weather.dart';
 import 'package:weather/weather_service.dart';
 
@@ -17,6 +18,10 @@ class Main extends StatefulWidget {
 }
 
 class _MainState extends State<Main> {
+ //var oneDayFromNow="";
+  var now= DateTime.now();
+   var day=DateTime.now().add(new Duration(days: 5));
+
   WeatherService weatherService = WeatherService();
   Weather weather = Weather();
 
@@ -26,7 +31,7 @@ class _MainState extends State<Main> {
   double tempF = 0;
   int hum = 0;
   double wind = 0;
-
+  double max=0;
 
   @override
   void initState() {
@@ -35,8 +40,10 @@ class _MainState extends State<Main> {
   }
 
   void getWeather(String input) async {
-
+   print("a");
       weather = await weatherService.getWeatherData(input);
+
+ // print("a");
 
       setState(() {
         currentWeather = weather.condition;
@@ -44,8 +51,14 @@ class _MainState extends State<Main> {
         tempF = weather.temperatureF;
         hum = weather.humidity;
         wind = weather.windspeed;
+      // max=weather.temperatureC;
+
+        print(weather.temperatureC);
 
       });
+
+//      print("a");
+
 
     weather11 = currentWeather.replaceAll('', "").toLowerCase();
   }
@@ -91,6 +104,14 @@ class _MainState extends State<Main> {
                             ),
                             SizedBox(
                               width: 40,
+                            ),
+                            Text(
+                              new DateFormat.E().format(now),
+                              style: TextStyle(color: Colors.white, fontSize: 25),
+                            ),
+                            Text(
+                              new DateFormat.MMMd().format(day),
+                              style: TextStyle(color: Colors.white, fontSize: 20),
                             ),
 
                             // Image(
