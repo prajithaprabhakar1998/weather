@@ -113,11 +113,11 @@ class _MainState extends State<Main> {
                               style: TextStyle(color: Colors.white, fontSize: 20),
                             ),
 
-                            Image(
-                              image: AssetImage("assets/images/$weather11.png"),
-                              height: 150,
-                              width: 150,
-                            ),
+                            // Image(
+                            //   image: AssetImage("assets/images/$weather11.png"),
+                            //   height: 150,
+                            //   width: 150,
+                            // ),
 
                           ],
                         ),
