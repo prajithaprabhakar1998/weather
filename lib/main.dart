@@ -26,7 +26,7 @@ class _MainState extends State<Main> {
   Weather weather = Weather();
 
   String currentWeather = "";
-  String weather11 = "sunny";
+  String weather11 = "";
   double tempC = 0;
   double tempF = 0;
   int hum = 0;
@@ -43,7 +43,7 @@ class _MainState extends State<Main> {
    print("a");
       weather = await weatherService.getWeatherData(input);
 
- // print("a");
+
 
       setState(() {
         currentWeather = weather.condition;
@@ -53,11 +53,10 @@ class _MainState extends State<Main> {
         wind = weather.windspeed;
       // max=weather.temperatureC;
 
-        print(weather.temperatureC);
 
       });
 
-//      print("a");
+
 
 
     weather11 = currentWeather.replaceAll('', "").toLowerCase();
@@ -114,11 +113,11 @@ class _MainState extends State<Main> {
                               style: TextStyle(color: Colors.white, fontSize: 20),
                             ),
 
-                            // Image(
-                            //   image: AssetImage("assets/images/$weather11.png"),
-                            //   height: 150,
-                            //   width: 150,
-                            // ),
+                            Image(
+                              image: AssetImage("assets/images/$weather11.png"),
+                              height: 150,
+                              width: 150,
+                            ),
 
                           ],
                         ),

@@ -16,13 +16,13 @@ class WeatherService {
         "q": input,
       };
 
-      // final uri = Uri.http(
-      //     "api.weatherapi.com", "/v1/current.json", queryParameters);
+       final uri = Uri.http(
+           "api.weatherapi.com", "/v1/current.json", queryParameters);
 
-      final uri2 = Uri.http(
-          "api.weatherapi.com", "/v1/forecast.json", queryParameters);
+    //  final uri2 = Uri.http(
+     //     "api.weatherapi.com", "/v1/forecast.json", queryParameters);
 
-      final response = await http.get(uri2);
+      final response = await http.get(uri);
 
 
       if (response.statusCode == 200) {
