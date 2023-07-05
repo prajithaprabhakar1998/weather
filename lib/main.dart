@@ -40,7 +40,6 @@ class _MainState extends State<Main> {
   }
 
   void getWeather(String input) async {
-   print("a");
       weather = await weatherService.getWeatherData(input);
 
 
@@ -102,7 +101,7 @@ class _MainState extends State<Main> {
                                   color: Colors.white, fontSize: 40.0),
                             ),
                             SizedBox(
-                              width: 40,
+                              width: 60,
                             ),
                             Text(
                               new DateFormat.E().format(now),
