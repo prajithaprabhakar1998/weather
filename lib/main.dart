@@ -57,7 +57,6 @@ class _MainState extends State<Main> {
 
 
 
-
     weather11 = currentWeather.replaceAll('', "").toLowerCase();
   }
 
@@ -108,7 +107,7 @@ class _MainState extends State<Main> {
                               style: TextStyle(color: Colors.white, fontSize: 25),
                             ),
                             Text(
-                              new DateFormat.MMMd().format(day),
+                              new DateFormat.MMMd().format(now),
                               style: TextStyle(color: Colors.white, fontSize: 20),
                             ),
 
